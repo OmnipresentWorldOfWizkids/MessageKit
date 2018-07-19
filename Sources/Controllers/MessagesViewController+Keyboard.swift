@@ -29,15 +29,15 @@ extension MessagesViewController {
     // MARK: - Register / Unregister Observers
 
     internal func addKeyboardObservers() {
-        NotificationCenter.default.addObserver(self, selector: #selector(MessagesViewController.handleKeyboardDidChangeState(_:)), name: .UIKeyboardWillChangeFrame, object: nil)
+        // NotificationCenter.default.addObserver(self, selector: #selector(MessagesViewController.handleKeyboardDidChangeState(_:)), name: .UIKeyboardWillChangeFrame, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(MessagesViewController.handleTextViewDidBeginEditing(_:)), name: .UITextViewTextDidBeginEditing, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(MessagesViewController.adjustScrollViewInset), name: .UIDeviceOrientationDidChange, object: nil)
+        // NotificationCenter.default.addObserver(self, selector: #selector(MessagesViewController.adjustScrollViewInset), name: .UIDeviceOrientationDidChange, object: nil)
     }
 
     internal func removeKeyboardObservers() {
-        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillChangeFrame, object: nil)
+        // NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillChangeFrame, object: nil)
         NotificationCenter.default.removeObserver(self, name: .UITextViewTextDidBeginEditing, object: nil)
-        NotificationCenter.default.removeObserver(self, name: .UIDeviceOrientationDidChange, object: nil)
+        // NotificationCenter.default.removeObserver(self, name: .UIDeviceOrientationDidChange, object: nil)
     }
 
     // MARK: - Notification Handlers
@@ -50,7 +50,7 @@ extension MessagesViewController {
         }
     }
 
-    @objc
+    /* @objc
     private func handleKeyboardDidChangeState(_ notification: Notification) {
         guard let keyboardEndFrame = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? CGRect else { return }
         
@@ -66,9 +66,9 @@ extension MessagesViewController {
         }
         
         messageCollectionViewBottomInset = newBottomInset
-    }
+    } */
 
-    @objc
+    /* @objc
     internal func adjustScrollViewInset() {
         if #available(iOS 11.0, *) {
             // No need to add to the top contentInset
@@ -79,7 +79,7 @@ extension MessagesViewController {
             messagesCollectionView.contentInset.top = topInset
             messagesCollectionView.scrollIndicatorInsets.top = topInset
         }
-    }
+    } */
 
     // MARK: - Helpers
 
