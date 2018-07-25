@@ -101,7 +101,7 @@ UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
             addKeyboardObservers()
             messageCollectionViewBottomInset = keyboardOffsetFrame.height
         }
-        adjustScrollViewInset()
+        // adjustScrollViewInset()
     }
 
     // MARK: - Initializers
@@ -192,6 +192,18 @@ UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
         case .custom:
             fatalError(MessageKitError.customDataUnresolvedCell)
         }
+    }
+    
+    open func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        guard let messagesDisplayDelegate = messagesCollectionView.messagesDisplayDelegate else { return }
+        guard let messagesDataSource = messagesCollectionView.messagesDataSource else { return }
+        
+        guard let messagesCollectionView = collectionView as? MessagesCollectionView else {
+            fatalError(MessageKitError.notMessagesCollectionView)
+        }
+        
+        let message = messagesDataSource.messageForItem(at: indexPath, in: messagesCollectionView)
+        messagesDisplayDelegate.message(message, willDisplayAt: indexPath, in: messagesCollectionView)
     }
 
     open func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {

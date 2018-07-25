@@ -161,6 +161,7 @@ public protocol MessagesDisplayDelegate: AnyObject {
     ///   - messagesCollectionView: The `MessagesCollectionView` in which this cell will be displayed.
     func configureMediaMessageImageView(_ imageView: UIImageView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView)
 
+    func message(_ message: MessageType, willDisplayAt indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView)
 }
 
 public extension MessagesDisplayDelegate {
